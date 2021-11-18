@@ -1,0 +1,316 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;		
+	vertical-align: baseline;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+body{
+    width: 100%;             
+}
+main{    
+    width: 100%;
+    display: flex;
+    margin-bottom: 40px;
+}
+header{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 0;
+    background-color: #F5F5F5;
+    box-shadow: 6px 1px 18px 5px rgba(46,36,94,0.84);    
+}
+header img{
+    width: 120px;
+    height: 50px;    
+    margin-left: 118px;    
+}
+header img:hover{
+    transition: 0.3s;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+header nav{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    width: 50%;
+    margin-right: 117px;
+}
+header nav ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style: none;
+}
+header nav ul li a{
+    margin-right: 20px;
+    text-decoration: none;
+    color: #828282;
+    font-size: 16px;
+}
+header nav ul li a:hover{
+    color: #333333;
+}
+#vitrine{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 1200px;
+    justify-content: space-evenly;
+}
+article{
+    width: 296px;
+    height: 400px;    
+    margin-left: 30px;
+    margin-top: 30px;    
+    border:2px solid #F5F5F5;
+    box-shadow: 6px 9px 18px 6px rgba(46,36,94,0.65);    
+}
+article:hover{
+    cursor: pointer;
+    border: 2px solid #2E245E;
+    transition: 0.5s;
+    transform: scale(1.05);
+}
+article div{
+    display: flex;
+    justify-content: left;    
+}
+img{
+    width: 100%;
+    height: 148px;
+   
+}
+div{
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 12px 15px;  
+    justify-content: space-around;
+}
+#h31, #h32, #h33, #h34, #h35, #h36{
+    margin-top: 20px;
+    font-size: 17px;    
+    color: #333333;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+#h33:hover{
+    cursor: pointer;
+    color: #2E245E; 
+}
+.spanClass{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;    
+    background-color: #2E245E;
+    width: 80px;
+    height: 40px;    
+    color: white;
+    padding: 5px;
+    font-size: 11px;
+    font-weight: bold;
+}
+#span2-1, #span2-2, #span2-3, #span2-4, #span2-5,  #span2-6{
+    text-align: left;
+}
+p{
+    color: #828282;
+    font-size: 15px;
+    font-weight: 16px;
+    margin-bottom: 15px;
+}
+div a{
+    color: #828282;
+    font-size: 14px;
+    font-weight: bold; 
+}
+div a:hover{
+    color: #6B54DE;
+    cursor: pointer;
+}
+.span2Class{
+    color: #2E245E;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+aside{
+    width: 20%; 
+    height: 380px;  
+}
+#form-1{
+    width: 100%;    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-left: 60px;
+}
+#input-1{
+    margin-top: 27px;
+    width: 70%;
+    height: 30px;
+    padding-left: 10px;
+    border: none;
+    background-color: #F5F5F5; 
+    box-shadow: 6px 9px 18px 6px rgba(46,36,94,0.65);
+}
+#button-1{
+    margin: 27px 0 0 5px;    
+    color: white;
+    width: 30%;
+    height: 32px;
+    border: none;
+    background-color: #6B54DE;
+    box-shadow: 6px 9px 18px 6px rgba(46,36,94,0.65);
+}
+#button-1:hover{
+    border: 2px solid #828282;    
+    cursor: pointer;
+}
+#section-1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
+    margin-left: 60px;
+    width: 100%;
+    height: 600px;
+    background-color: #F5F5F5;
+    box-shadow: 6px 9px 18px 6px rgba(46,36,94,0.65);
+}
+#span-1{
+    color: white;    
+    text-align: center;
+    background-color: #6B54DE;
+    width: 100%;
+    padding: 10px 90px;
+}
+#div-1{
+    width: 100%;
+    height: 600px;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;   
+    align-items: center;
+    overflow: scroll;
+}
+#h3-1{
+    color: #333333; 
+    font-size: 22px;     
+}
+#p-1{
+    margin-top: 10px;
+    font-size: 14px;    
+}
+.itemDaLoja{
+    width: 300px;
+    height: 145px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;         
+    background-color: #2E245E;
+    margin: 5px 0;
+    border:2px solid #000000;
+    border-radius: 10px; 
+    padding: 10px;              
+}
+#divXMM{    
+    height: 100%;
+}
+#divJogo{
+    width: 90%;
+    height: 100%;
+}
+#divJogo img{
+    width: 100%;
+    height: 80px;
+    border:1px solid #fbfbfb;   
+    
+}
+.hidden{
+    display: none;
+}
+.itemDaLoja h3, span{
+    color: white; 
+    width: 100%;   
+    text-align: right;
+    font-size: 15px;
+}
+#ajustarItens{
+    width: 100%;
+    height: 600px;
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-start;   
+    align-items: flex-end;
+    overflow: auto;
+}
+#x{
+    color: #ff0000;
+    float: left;      
+    text-align: center;
+    margin: 20px 10px 30px 0px;       
+    border-radius: 50%; 
+    border: 1px solid rgb(0, 0, 0);
+    background-color: rgb(0, 0, 0);
+}
+#mais{
+    color: #fbfbfb;         
+    margin: 0px 10px 0px 0px;   
+    text-align:center;
+    border-radius: 50%; 
+    border: 1px solid rgb(0, 0, 0);
+    background-color: rgb(39, 129, 44);
+}
+#quantidadeJogo{
+    color: #ffffff;       
+    text-align: center; 
+    margin: 0px 5px 0px 0px;    
+    border-radius: 50%; 
+    
+}
+#menos{
+    color: #fbfbfb;       
+    text-align: center; 
+    margin: 0px 10px 20px 0px;    
+    border-radius: 50%; 
+    border: 1px solid rgb(0, 0, 0);
+    background-color: rgb(192, 2, 2);
+}
+.butt{
+    width: 150px;
+    border: none;
+    background-color: white;
+    color: #828282;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: underline;
+}
+.butt:hover{
+    color: #6B54DE;
+    cursor: pointer;
+    
+}
+footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;    
+}
