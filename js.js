@@ -22,6 +22,9 @@ input.placeholder = 'Digite aqui sua pesquisa';
 create(form, 'button', 1);
 const button = document.getElementById('button-1');
 button.innerHTML = 'Pesquisar';
+button.addEventListener('click', function (event) {
+    event.preventDefault();
+})
 
 create(aside, 'section', 1);
 const sectionCarrinho = document.getElementById('section-1');
@@ -30,8 +33,29 @@ create(sectionCarrinho, 'span', 1);
 const spanCarrinho = document.getElementById('span-1');
 spanCarrinho.innerHTML = 'Carrinho de compras';
 
-create(sectionCarrinho, 'div', 1);
+create(sectionCarrinho, 'div', 2);
 const divCarrinho = document.getElementById('div-1');
+const divQuantidade = document.getElementById('div-2')
+
+const pQuantidade = document.createElement('p')
+pQuantidade.id = 'pQuantidade'
+pQuantidade.innerText = 'Quantidade:'
+divQuantidade.appendChild(pQuantidade)
+
+const spanQuantValor = document.createElement('span')
+spanQuantValor.id = 'spanQuantValor'
+spanQuantValor.innerText = 0
+divQuantidade.appendChild(spanQuantValor)
+
+const pTotal = document.createElement('p')
+pTotal.id = 'pTotal'
+pTotal.innerText = 'Total:'
+divQuantidade.appendChild(pTotal)
+
+const spanTotalValor = document.createElement('span')
+spanTotalValor.id = 'spanTotalValor'
+spanTotalValor.innerText = 0
+divQuantidade.appendChild(spanTotalValor)
 
 create(divCarrinho, 'h3', 1);
 const h3Carrinho = document.getElementById('h3-1');
@@ -40,6 +64,8 @@ h3Carrinho.innerHTML = 'Carrinho Vazio';
 create(divCarrinho, 'p', 1);
 const pCarrinho = document.getElementById('p-1');
 pCarrinho.innerHTML = 'Adicione itens';
+
+
 
 for (let i = 0; i < 6; i++) {
 
@@ -107,12 +133,16 @@ p4.innerHTML = 'Cyberpunk 2077 é uma história de ação e aventura em mundo ab
 p5.innerHTML = 'sua mais nova aventura no universo de Marvels Spider-Man, adolescente Miles Morales está se ajustando a sua nova casa';
 p6.innerHTML = 'Melhor jogo de futebol da história,venha sentir essa emoção do estádio.';
 
-document.getElementById('span2-1').innerHTML = 'R$ 229,00';
-document.getElementById('span2-2').innerHTML = 'R$ 159,00';
-document.getElementById('span2-3').innerHTML = 'R$ 139,00';
-document.getElementById('span2-4').innerHTML = 'R$ 135,00';
-document.getElementById('span2-5').innerHTML = 'R$ 265,00';
-document.getElementById('span2-6').innerHTML = 'R$ 209,00';
+nvalor = [229.00, 159.00, 139.00, 135.00, 265.00, 209.00]
+
+
+
+document.getElementById('span2-1').innerHTML = '229.00';
+document.getElementById('span2-2').innerHTML = '159.00';
+document.getElementById('span2-3').innerHTML = '139.00';
+document.getElementById('span2-4').innerHTML = '135.00';
+document.getElementById('span2-5').innerHTML = '265.00';
+document.getElementById('span2-6').innerHTML = '209.00';
 
 
 const button2 = document.getElementsByClassName('butt');
@@ -132,6 +162,7 @@ for (let i = 0; i < button2.length; i++) {
 }
 
 
+
 function adicionaCarrinho(event) {
     divCarrinho.id = 'ajustarItens';
     const divXMM = document.createElement('div');
@@ -140,7 +171,11 @@ function adicionaCarrinho(event) {
     divJogo.id = 'divJogo';
     const imagem = document.createElement('img');
     const h3 = document.createElement('h3');
-    const valor = document.createElement('span');
+
+    const valor = document.createElement('p');
+    valor.className = 'valorItem'
+    valor.id = 'valorItem'
+
 
     const card = document.createElement('div');
     card.className = 'itemDaLoja';
@@ -179,9 +214,10 @@ function adicionaCarrinho(event) {
         divJogo.appendChild(imagem);
         divJogo.appendChild(h3);
         divJogo.appendChild(valor);
-        divCarrinho.appendChild(card);           
-    }      
-
+        divCarrinho.appendChild(card);
+        n1 = Number(spanQuantValor.innerText);
+        spanQuantValor.innerText = n1 + 1;
+    }
 
     imagem.src = imge.src;
     h3.innerText = texto;
@@ -189,29 +225,42 @@ function adicionaCarrinho(event) {
     console.log(imge, texto, preco);
     carrinhoAdd(mais, menos, x);
 
+    let n = Number(spanTotalValor.innerText)
+
+    spanTotalValor.innerText = n + Number(valor.innerText)    
+
 }
 
 function carrinhoAdd(max, min, rem) {
     function adicionar(event) {
         let span = event.target.closest('div').childNodes[2];
-        n = Number((span).innerText);
+        n = Number(span.innerText);
+        n1 = Number(spanQuantValor.innerText);
         span.innerText = n + 1;
-        console.log(span);
-    }
+        spanQuantValor.innerText = span.innerText;
+
+        const valor = document.getElementById('valorItem') 
+        let nTotal = Number(valor.innerText)
+        console.log(nTotal)
+        spanTotalValor.innerText = Number(spanTotalValor.innerText) + Number(valor.innerText)
+    } 
     function diminuirItem(event) {
         let span = event.target.closest('div').childNodes[2];
         n = Number((span).innerText);
+        n1 = Number(spanQuantValor.innerText);
         if (n > 1) {
             span.innerText = n - 1;
+            spanQuantValor.innerText = span.innerText;
         } else if (n <= 1) {
             removerItem(event);
-        }
+            spanQuantValor.innerText = n1 = 0
+        }        
     }
     function removerItem(event) {
         let card = event.target.closest('div').parentNode;
         card.remove();
         console.log(divCarrinho.childNodes.length);
-        if (divCarrinho.childNodes.length <= 2) {            
+        if (divCarrinho.childNodes.length <= 2) {
             pCarrinho.classList = 'pCar';
             h3Carrinho.classList = 'h3Car';
         }
@@ -228,19 +277,61 @@ function podeFuncionar(texto, divCarrinho) {
     if (divCarrinho.childNodes.length > 2) {
         const filhosDiv = divCarrinho.childNodes;
         for (let i = 2; i < filhosDiv.length; i++) {
-            arr.push(filhosDiv[i].lastChild.childNodes[1].innerText);                       
-        }           
+            arr.push(filhosDiv[i].lastChild.childNodes[1].innerText);
+        }
         if (arr.includes(texto)) {
             resposta = false;
             let itemRepetido;
-            for (let i = 2; i < filhosDiv.length; i++){
-                if(filhosDiv[i].lastChild.childNodes[1].innerText === texto){
+            for (let i = 2; i < filhosDiv.length; i++) {
+                if (filhosDiv[i].lastChild.childNodes[1].innerText === texto) {
                     itemRepetido = filhosDiv[i].firstChild.childNodes[2];
                     let valor = Number(itemRepetido.innerText);
-                    itemRepetido.innerText = valor + 1 ; 
+                    itemRepetido.innerText = valor + 1;
+                    n1 = Number(spanQuantValor.innerText);
+                    spanQuantValor.innerText = n1 + 1;
                 }
             }
-        }            
+        }
     }
     return resposta;
+}
+
+const ps5 = document.getElementById('Jogos PS5')
+const ps4 = document.getElementById('Jogos PS4')
+const xbox = document.getElementById('Jogos x-box')
+const todos = document.getElementById('todos')
+
+
+let vitrine = document.getElementById('vitrine')
+
+ps5.addEventListener('click', () => filtrar('Jogos PS5'))
+ps4.addEventListener('click', () => filtrar('Jogos PS4'))
+xbox.addEventListener('click', () => filtrar('Jogos x-box'))
+todos.addEventListener('click', aparecerTodos)
+
+function filtrar(nome) {
+    for (let i = 1; i < vitrine.childNodes.length; i++) {
+        if (vitrine.childNodes[i].childNodes[1].firstChild.innerText !== nome) {
+            vitrine.childNodes[i].classList.add('hidden')
+        } else if (vitrine.childNodes[i].childNodes[1].firstChild.innerText === nome) {
+            vitrine.childNodes[i].classList.remove('hidden')
+        }
+    }
+}
+function aparecerTodos() {
+    for (let i = 1; i < vitrine.childNodes.length; i++) {
+        vitrine.childNodes[i].classList.remove('hidden')
+    }
+}
+
+button.addEventListener('click', barraDePesquisar)
+
+function barraDePesquisar() {
+    for (let i = 1; i < vitrine.childNodes.length; i++) {
+        if (!vitrine.childNodes[i].childNodes[1].childNodes[1].innerText.toLowerCase().includes(input.value.toLowerCase())) {
+            vitrine.childNodes[i].classList.add('hidden')
+        } else if (vitrine.childNodes[i].childNodes[1].childNodes[1].innerText.includes('')) {
+            vitrine.childNodes[i].classList.remove('hidden')
+        }
+    }
 }
