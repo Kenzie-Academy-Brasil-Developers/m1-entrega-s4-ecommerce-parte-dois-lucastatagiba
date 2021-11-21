@@ -137,12 +137,12 @@ nvalor = [229.00, 159.00, 139.00, 135.00, 265.00, 209.00]
 
 
 
-document.getElementById('span2-1').innerHTML = '229.00';
-document.getElementById('span2-2').innerHTML = '159.00';
-document.getElementById('span2-3').innerHTML = '139.00';
-document.getElementById('span2-4').innerHTML = '135.00';
-document.getElementById('span2-5').innerHTML = '265.00';
-document.getElementById('span2-6').innerHTML = '209.00';
+document.getElementById('span2-1').innerHTML = `R$ ${229.00},00`
+document.getElementById('span2-2').innerHTML = `R$ ${159.00},00`
+document.getElementById('span2-3').innerHTML = `R$ ${139.00},00`
+document.getElementById('span2-4').innerHTML = `R$ ${135.00},00`
+document.getElementById('span2-5').innerHTML = `R$ ${265.00},00`
+document.getElementById('span2-6').innerHTML = `R$ ${209.00},00`
 
 
 const button2 = document.getElementsByClassName('butt');
@@ -225,36 +225,59 @@ function adicionaCarrinho(event) {
     console.log(imge, texto, preco);
     carrinhoAdd(mais, menos, x);
 
-    let n = Number(spanTotalValor.innerText)
 
-    spanTotalValor.innerText = n + Number(valor.innerText)    
+
+    let n = Number(spanTotalValor.innerText.slice(2, -3))
+
+    let resultado = n + Number(valor.innerText.slice(2, -3))    
+    
+    spanTotalValor.innerText = `R$ ${resultado},00`
+
+    n = resultado
+
+
 
 }
 
+
 function carrinhoAdd(max, min, rem) {
     function adicionar(event) {
+
         let span = event.target.closest('div').childNodes[2];
         n = Number(span.innerText);
-        n1 = Number(spanQuantValor.innerText);
         span.innerText = n + 1;
-        spanQuantValor.innerText = span.innerText;
 
-        const valor = document.getElementById('valorItem') 
-        let nTotal = Number(valor.innerText)
-        console.log(nTotal)
-        spanTotalValor.innerText = Number(spanTotalValor.innerText) + Number(valor.innerText)
-    } 
+        n1 = Number(spanQuantValor.innerText);
+        spanQuantValor.innerText = n1 + 1;
+
+        let valor2 = event.target.closest('div').parentNode.lastChild.lastChild.innerText.slice(2, -3)
+        n3 = Number(valor2)
+        console.log(valor2)
+
+        n2 = Number(spanTotalValor.innerText.slice(2, -3))
+        let resultado = n2 + n3
+
+        spanTotalValor.innerText = `R$ ${resultado},00`
+
+        n2 = resultado
+
+    }
     function diminuirItem(event) {
         let span = event.target.closest('div').childNodes[2];
         n = Number((span).innerText);
         n1 = Number(spanQuantValor.innerText);
         if (n > 1) {
             span.innerText = n - 1;
-            spanQuantValor.innerText = span.innerText;
+            spanQuantValor.innerText = n1 - 1;
         } else if (n <= 1) {
             removerItem(event);
-            spanQuantValor.innerText = n1 = 0
-        }        
+            spanQuantValor.innerText = n1 - 1
+        }
+        let valor2 = event.target.closest('div').parentNode.lastChild.lastChild.innerText.slice(2, -3)
+        n2 = Number(spanTotalValor.innerText.slice(2, -3))
+        resultado = n2 - valor2
+        spanTotalValor.innerText = `R$ ${resultado},00`
+        n2 = resultado
     }
     function removerItem(event) {
         let card = event.target.closest('div').parentNode;
