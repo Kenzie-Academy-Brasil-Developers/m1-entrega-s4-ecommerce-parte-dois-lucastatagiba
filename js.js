@@ -35,27 +35,27 @@ spanCarrinho.innerHTML = 'Carrinho de compras';
 
 create(sectionCarrinho, 'div', 2);
 const divCarrinho = document.getElementById('div-1');
-const divQuantidade = document.getElementById('div-2')
+const divQuantidade = document.getElementById('div-2');
 
-const pQuantidade = document.createElement('p')
-pQuantidade.id = 'pQuantidade'
-pQuantidade.innerText = 'Quantidade:'
-divQuantidade.appendChild(pQuantidade)
+const pQuantidade = document.createElement('p');
+pQuantidade.id = 'pQuantidade';
+pQuantidade.innerText = 'Quantidade:';
+divQuantidade.appendChild(pQuantidade);
 
-const spanQuantValor = document.createElement('span')
-spanQuantValor.id = 'spanQuantValor'
-spanQuantValor.innerText = 0
-divQuantidade.appendChild(spanQuantValor)
+const spanQuantValor = document.createElement('span');
+spanQuantValor.id = 'spanQuantValor';
+spanQuantValor.innerText = 0;
+divQuantidade.appendChild(spanQuantValor);
 
-const pTotal = document.createElement('p')
-pTotal.id = 'pTotal'
-pTotal.innerText = 'Total:'
-divQuantidade.appendChild(pTotal)
+const pTotal = document.createElement('p');
+pTotal.id = 'pTotal';
+pTotal.innerText = 'Total:';
+divQuantidade.appendChild(pTotal);
 
-const spanTotalValor = document.createElement('span')
-spanTotalValor.id = 'spanTotalValor'
-spanTotalValor.innerText = `R$ ${0},00`
-divQuantidade.appendChild(spanTotalValor)
+let spanTotalValor = document.createElement('span');
+spanTotalValor.id = 'spanTotalValor';
+spanTotalValor.innerText = `R$ ${0},00`;
+divQuantidade.appendChild(spanTotalValor);
 
 create(divCarrinho, 'h3', 1);
 const h3Carrinho = document.getElementById('h3-1');
@@ -64,8 +64,6 @@ h3Carrinho.innerHTML = 'Carrinho Vazio';
 create(divCarrinho, 'p', 1);
 const pCarrinho = document.getElementById('p-1');
 pCarrinho.innerHTML = 'Adicione itens';
-
-
 
 for (let i = 0; i < 6; i++) {
 
@@ -118,7 +116,6 @@ span4.innerHTML = 'Jogos x-box';
 span5.innerHTML = 'Jogos PS5';
 span6.innerHTML = 'Jogos PS4';
 
-
 h31.innerHTML = 'Fifa 22';
 h32.innerHTML = 'Farcry 6';
 h33.innerHTML = 'Red dead redemption 2';
@@ -133,20 +130,16 @@ p4.innerHTML = 'Cyberpunk 2077 é uma história de ação e aventura em mundo ab
 p5.innerHTML = 'sua mais nova aventura no universo de Marvels Spider-Man, adolescente Miles Morales está se ajustando a sua nova casa';
 p6.innerHTML = 'Melhor jogo de futebol da história,venha sentir essa emoção do estádio.';
 
-nvalor = [229.00, 159.00, 139.00, 135.00, 265.00, 209.00]
+nvalor = [229.00, 159.00, 139.00, 135.00, 265.00, 209.00];
 
-
-
-document.getElementById('span2-1').innerHTML = `R$ ${229.00},00`
-document.getElementById('span2-2').innerHTML = `R$ ${159.00},00`
-document.getElementById('span2-3').innerHTML = `R$ ${139.00},00`
-document.getElementById('span2-4').innerHTML = `R$ ${135.00},00`
-document.getElementById('span2-5').innerHTML = `R$ ${265.00},00`
-document.getElementById('span2-6').innerHTML = `R$ ${209.00},00`
-
+document.getElementById('span2-1').innerHTML = `R$ ${229.00},00`;
+document.getElementById('span2-2').innerHTML = `R$ ${159.00},00`;
+document.getElementById('span2-3').innerHTML = `R$ ${139.00},00`;
+document.getElementById('span2-4').innerHTML = `R$ ${135.00},00`;
+document.getElementById('span2-5').innerHTML = `R$ ${265.00},00`;
+document.getElementById('span2-6').innerHTML = `R$ ${209.00},00`;
 
 const button2 = document.getElementsByClassName('butt');
-console.log(button2);
 
 function pegaJogo(event) {
 
@@ -156,12 +149,9 @@ function pegaJogo(event) {
     return [img, h3, valor];
 }
 
-
 for (let i = 0; i < button2.length; i++) {
     button2[i].addEventListener('click', adicionaCarrinho);
 }
-
-
 
 function adicionaCarrinho(event) {
     divCarrinho.id = 'ajustarItens';
@@ -173,9 +163,8 @@ function adicionaCarrinho(event) {
     const h3 = document.createElement('h3');
 
     const valor = document.createElement('p');
-    valor.className = 'valorItem'
-    valor.id = 'valorItem'
-
+    valor.className = 'valorItem';
+    valor.id = 'valorItem';
 
     const card = document.createElement('div');
     card.className = 'itemDaLoja';
@@ -201,7 +190,6 @@ function adicionaCarrinho(event) {
 
     const [imge, texto, preco] = pegaJogo(event);
 
-
     if (podeFuncionar(texto, divCarrinho)) {
         h3Carrinho.classList.add('hidden');
         pCarrinho.classList.add('hidden');
@@ -222,23 +210,17 @@ function adicionaCarrinho(event) {
     imagem.src = imge.src;
     h3.innerText = texto;
     valor.innerText = preco;
-    console.log(imge, texto, preco);
+    
     carrinhoAdd(mais, menos, x);
 
+    let n = Number(spanTotalValor.innerText.slice(2, -3));
 
+    let resultado = n + Number(valor.innerText.slice(2, -3));
 
-    let n = Number(spanTotalValor.innerText.slice(2, -3))
+    spanTotalValor.innerText = `R$ ${resultado},00`;
 
-    let resultado = n + Number(valor.innerText.slice(2, -3))    
-    
-    spanTotalValor.innerText = `R$ ${resultado},00`
-
-    n = resultado
-
-
-
+    n = resultado;    
 }
-
 
 function carrinhoAdd(max, min, rem) {
     function adicionar(event) {
@@ -250,43 +232,56 @@ function carrinhoAdd(max, min, rem) {
         n1 = Number(spanQuantValor.innerText);
         spanQuantValor.innerText = n1 + 1;
 
-        let valor2 = event.target.closest('div').parentNode.lastChild.lastChild.innerText.slice(2, -3)
-        n3 = Number(valor2)
-        console.log(valor2)
+        let valor2 = event.target.closest('div').parentNode.lastChild.lastChild.innerText.slice(2, -3);
+        n3 = Number(valor2);
+       
 
-        n2 = Number(spanTotalValor.innerText.slice(2, -3))
-        let resultado = n2 + n3
+        n2 = Number(spanTotalValor.innerText.slice(2, -3));
+        let resultado = n2 + n3;
 
-        spanTotalValor.innerText = `R$ ${resultado},00`
-
-        n2 = resultado
+        spanTotalValor.innerText = `R$ ${resultado},00`;
+        n2 = resultado;
 
     }
     function diminuirItem(event) {
         let span = event.target.closest('div').childNodes[2];
         n = Number((span).innerText);
         n1 = Number(spanQuantValor.innerText);
+
         if (n > 1) {
             span.innerText = n - 1;
             spanQuantValor.innerText = n1 - 1;
         } else if (n <= 1) {
             removerItem(event);
-            spanQuantValor.innerText = n1 - 1
+            spanQuantValor.innerText = n1 - 1;
         }
-        let valor2 = event.target.closest('div').parentNode.lastChild.lastChild.innerText.slice(2, -3)
-        n2 = Number(spanTotalValor.innerText.slice(2, -3))
-        resultado = n2 - valor2
-        spanTotalValor.innerText = `R$ ${resultado},00`
-        n2 = resultado
+
+        let valor2 = event.target.closest('div').parentNode.lastChild.lastChild.innerText.slice(2, -3);
+        n2 = Number(spanTotalValor.innerText.slice(2, -3));
+        resultado = n2 - valor2;
+        spanTotalValor.innerText = `R$ ${resultado},00`;
+        n2 = resultado;
     }
     function removerItem(event) {
+        
         let card = event.target.closest('div').parentNode;
+        
+        let quantdd = event.target.closest('div').childNodes[2].innerText;
+        let valor2 = event.target.closest('div').parentNode.lastChild.lastChild.innerText.slice(2, -3);
+        n2 = Number(spanTotalValor.innerText.slice(2, -3));
+        resultado = n2 - (valor2 * quantdd);
+        spanTotalValor.innerText = `R$ ${resultado},00`;
+        n2 = resultado;
+
         card.remove();
-        console.log(divCarrinho.childNodes.length);
+        
+        spanQuantValor.innerText = Number(spanQuantValor.innerText) - quantdd;
+
         if (divCarrinho.childNodes.length <= 2) {
             pCarrinho.classList = 'pCar';
-            h3Carrinho.classList = 'h3Car';
+            h3Carrinho.classList = 'h3Car';            
         }
+       
     }
     max.addEventListener('click', adicionar);
     min.addEventListener('click', diminuirItem);
@@ -319,42 +314,42 @@ function podeFuncionar(texto, divCarrinho) {
     return resposta;
 }
 
-const ps5 = document.getElementById('Jogos PS5')
-const ps4 = document.getElementById('Jogos PS4')
-const xbox = document.getElementById('Jogos x-box')
-const todos = document.getElementById('todos')
+const ps5 = document.getElementById('Jogos PS5');
+const ps4 = document.getElementById('Jogos PS4');
+const xbox = document.getElementById('Jogos x-box');
+const todos = document.getElementById('todos');
 
 
-let vitrine = document.getElementById('vitrine')
+let vitrine = document.getElementById('vitrine');
 
-ps5.addEventListener('click', () => filtrar('Jogos PS5'))
-ps4.addEventListener('click', () => filtrar('Jogos PS4'))
-xbox.addEventListener('click', () => filtrar('Jogos x-box'))
-todos.addEventListener('click', aparecerTodos)
+ps5.addEventListener('click', () => filtrar('Jogos PS5'));
+ps4.addEventListener('click', () => filtrar('Jogos PS4'));
+xbox.addEventListener('click', () => filtrar('Jogos x-box'));
+todos.addEventListener('click', aparecerTodos);
 
 function filtrar(nome) {
     for (let i = 1; i < vitrine.childNodes.length; i++) {
         if (vitrine.childNodes[i].childNodes[1].firstChild.innerText !== nome) {
-            vitrine.childNodes[i].classList.add('hidden')
+            vitrine.childNodes[i].classList.add('hidden');
         } else if (vitrine.childNodes[i].childNodes[1].firstChild.innerText === nome) {
-            vitrine.childNodes[i].classList.remove('hidden')
+            vitrine.childNodes[i].classList.remove('hidden');
         }
     }
 }
 function aparecerTodos() {
     for (let i = 1; i < vitrine.childNodes.length; i++) {
-        vitrine.childNodes[i].classList.remove('hidden')
+        vitrine.childNodes[i].classList.remove('hidden');
     }
 }
 
-button.addEventListener('click', barraDePesquisar)
+button.addEventListener('click', barraDePesquisar);
 
 function barraDePesquisar() {
     for (let i = 1; i < vitrine.childNodes.length; i++) {
         if (!vitrine.childNodes[i].childNodes[1].childNodes[1].innerText.toLowerCase().includes(input.value.toLowerCase())) {
-            vitrine.childNodes[i].classList.add('hidden')
+            vitrine.childNodes[i].classList.add('hidden');
         } else if (vitrine.childNodes[i].childNodes[1].childNodes[1].innerText.includes('')) {
-            vitrine.childNodes[i].classList.remove('hidden')
+            vitrine.childNodes[i].classList.remove('hidden');
         }
     }
 }
