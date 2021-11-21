@@ -54,7 +54,7 @@ divQuantidade.appendChild(pTotal)
 
 const spanTotalValor = document.createElement('span')
 spanTotalValor.id = 'spanTotalValor'
-spanTotalValor.innerText = 0
+spanTotalValor.innerText = `R$ ${0},00`
 divQuantidade.appendChild(spanTotalValor)
 
 create(divCarrinho, 'h3', 1);
